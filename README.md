@@ -3,7 +3,7 @@ All about CVE-2022-30190, aka follina, that is a RCE vulnerability that affects 
 
 # Usage
 ```commandline
-usage: follina.py [-h] [--command COMMAND] [--ip IP] [--port PORT] [--output OUTPUT]
+usage: follina.py [-h] [--command COMMAND] [--ip IP] [--port PORT] [--output OUTPUT] [--reverse REVERSE]
 
 POC for CVE-2022-30190, aka follina
 
@@ -14,7 +14,9 @@ options:
   --ip IP, -i IP        IP to serve the payload on (defaults to 127.0.0.1)
   --port PORT, -p PORT  Port to serve the payload on (defaults to 4444)
   --output OUTPUT, -o OUTPUT
-                        Filename for output, should end with extension .doc or .docx (defaults to maldoc.docx)
+                        Filename for output, should end with extension .doc, .docx or maybe .rtf (defaults to maldoc.docx)
+  --reverse REVERSE, -r REVERSE
+                        Instantiate a reverse shell connection from the target at port furnished. 64-bits systems only.
 ```
 
 # Workaround

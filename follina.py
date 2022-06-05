@@ -43,7 +43,7 @@ if __name__ == '__main__':
         "-r",
         type=int,
         default="0",
-        help="Instantiate a reverse shell connection on the target at port furnished. 64-bits systems only.",
+        help="Instantiate a reverse shell connection from the target at port furnished. 64-bits systems only.",
     )
 
     args = parser.parse_args()
