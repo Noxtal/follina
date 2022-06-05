@@ -35,7 +35,7 @@ if __name__ == '__main__':
         "--output",
         "-o",
         default="maldoc.docx",
-        help="Filename for output, should end with extension .doc or .docx (defaults to maldoc.docx)",
+        help="Filename for output, should end with extension .doc, .docx or maybe .rtf (defaults to maldoc.docx)",
     )
 
     args = parser.parse_args()
@@ -45,6 +45,10 @@ if __name__ == '__main__':
     host = args.ip
     port = args.port
     filename = args.output
+
+    if not filename.split(".")[-1] in ["doc", "docx", "rtf"]:
+        print("[!] Filename should end with extension .doc, .docx or maybe .rtf...")
+        exit(1)
 
     path = tempfile.mkdtemp()
     shutil.copytree("docx", path, dirs_exist_ok=True)
